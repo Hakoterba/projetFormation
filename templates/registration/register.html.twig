@@ -1,0 +1,90 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Register{% endblock %}
+
+{% block body %}
+    {% for flashError in app.flashes('verify_email_error') %}
+        <div class="alert alert-danger" role="alert">{{ flashError }}</div>
+    {% endfor %}
+
+    <h1>Register</h1>
+        <section class="intro">
+    <div class="bg-image h-100">
+        <div class="mask d-flex align-items-center h-100">
+        <div class="container">
+            <div class="row justify-content-center">
+            <div class="col-12 col-md-10 col-lg-7 col-xl-6">
+                <div class="card mask-custom">
+                <div class="card-body p-5">
+
+                    <div class="my-4">
+
+                    <h2 class="text-center mb-5">Register Form</h2>
+
+                    {{ form_start(registrationForm) }}
+                    <form>
+                        <!-- 2 column grid layout with text inputs for the first and last names -->
+                        <div class="row">
+                        <div class="col-12 col-md-6 mb-4">
+                            <div class="form-outline">
+                            {{ form_row(registrationForm.firstName) }}
+                            </div>
+                        </div>
+                        <div class="col-12 col-md-6 mb-4">
+                            <div class="form-outline ">
+                            {{ form_row(registrationForm.lastName) }}
+                            </div>
+                        </div>
+                        </div>
+
+                        <!-- Email input -->
+                        <div class="form-outline  mb-4">
+                        {{ form_row(registrationForm.email) }}
+                        </div>
+
+                        <!-- Password input -->
+                        <div class="form-outline  mb-4">
+                        {{ form_row(registrationForm.plainPassword) }}
+                        </div>
+
+                        <!-- Submit button -->
+                        <button type="submit" class="btn btn-light btn-block mb-4">Sign up</button>
+                            <button type="submit" class="btn">Register</button>
+                        {{ form_end(registrationForm) }}
+                    </form>
+
+                    </div>
+
+                </div>
+                </div>
+            </div>
+            </div>
+        </div>
+        </div>
+    </div>
+    </section>
+    
+        
+{% endblock %}
+
+{% block javascripts %}
+<script>
+(() => {
+'use strict';
+
+    // Fetch all the forms we want to apply custom Bootstrap validation styles to
+    const forms = document.querySelectorAll('.needs-validation');
+
+    // Loop over them and prevent submission
+    Array.prototype.slice.call(forms).forEach((form) => {
+    form.addEventListener('submit', (event) => {
+        if (!form.checkValidity()) {
+            event.preventDefault();
+            event.stopPropagation();
+        }
+        form.classList.add('was-validated');
+    }, false);
+    });
+})();
+</script>
+{% endblock %}
